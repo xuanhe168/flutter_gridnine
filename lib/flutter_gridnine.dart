@@ -5,7 +5,6 @@ import 'package:flutter_gridnine/indicator_decorator.dart';
 import 'package:flutter_gridnine/indicator_line.dart';
 import 'gridnine_model.dart';
 export 'package:flutter_gridnine/gridnine_model.dart';
-export 'package:flutter_gridnine/indicator_base.dart';
 export 'indicator_line.dart';
 
 class GridNine extends StatefulWidget {
