@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const Size kDefaultSize = Size.square(9.0);
-const EdgeInsets kDefaultSpacing = EdgeInsets.all(6.0);
+const EdgeInsets kDefaultSpacing = EdgeInsets.all(1.0);
 const ShapeBorder kDefaultShape = CircleBorder();
 
 class IndicatorDecorator {

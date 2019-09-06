@@ -20,7 +20,7 @@ class GridNine extends StatefulWidget {
     @required this.collection,
     this.loop = true,
     this.axisCount = 5,
-    this.height = 180,
+    this.height = 170,
     this.onTap,
     this.indicatorShow = false,
     this.indicatorActiveColor = Colors.red,
@@ -79,15 +79,16 @@ class _GridNine extends State<GridNine> {
     for (index = 0; index < pageCount.toInt(); index++)
       widgets.add(
         Container(
-          padding: const EdgeInsets.only(top: 5),
+          margin: const EdgeInsets.only(top: 5),
           child: GridView(
+            scrollDirection: Axis.vertical,
+            physics: FixedExtentScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: widget.axisCount,
-              childAspectRatio: 1,
+              childAspectRatio: 0.9
             ),
             children: _buildItem(
-              items.sublist(
-                  index * pageItemCount, index * pageItemCount + pageItemCount),
+              items.sublist(index * pageItemCount, index * pageItemCount + pageItemCount),
             ),
           ),
         ),
@@ -95,11 +96,13 @@ class _GridNine extends State<GridNine> {
     if (remainCount > 0) {
       widgets.add(
         Container(
-          padding: const EdgeInsets.only(top: 5),
+          margin: const EdgeInsets.only(top: 5),
           child: GridView(
+            scrollDirection: Axis.vertical,
+            physics: FixedExtentScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: widget.axisCount,
-              childAspectRatio: 1,
+              childAspectRatio: 0.9,
             ),
             children: _buildItem(
               items.sublist(index * pageItemCount, index * pageItemCount + remainCount),
