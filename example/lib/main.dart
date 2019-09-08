@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
+        margin:const EdgeInsets.only(top:20),
         height: 230,
         child: GridNine(
             backgroundColor: Colors.white,

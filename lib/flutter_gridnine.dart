@@ -82,7 +82,6 @@ class _GridNine extends State<GridNine> {
     for (index = 0; index < pageCount.toInt(); index++)
       widgets.add(
         Container(
-          margin: const EdgeInsets.only(top: 5),
           child: GridView(
             scrollDirection: Axis.vertical,
             physics: FixedExtentScrollPhysics(),
