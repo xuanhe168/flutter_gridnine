@@ -9,6 +9,7 @@ export 'indicator_line.dart';
 
 class GridNine extends StatefulWidget {
   final bool loop;
+  final Color backgroundColor;
   final double height;
   final num axisCount;
   final bool indicatorShow;
@@ -22,6 +23,7 @@ class GridNine extends StatefulWidget {
     this.axisCount = 5,
     this.height = 170,
     this.onTap,
+    this.backgroundColor = Colors.transparent,
     this.indicatorShow = false,
     this.indicatorActiveColor = Colors.red,
   });
@@ -38,6 +40,7 @@ class _GridNine extends State<GridNine> {
     int dotCount = widget.collection.length ~/ (rowCount * 2);
     dotCount += widget.collection.length % (rowCount * 2) > 0 ? 1 : 0;
     return Scaffold(
+      backgroundColor:widget.backgroundColor,
       body: Column(
         children: <Widget>[
           Container(
