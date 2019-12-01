@@ -1,7 +1,8 @@
 
 class GNModel{
   final String url;
+  final String iconUrl;
   final String title;
   final String description;
-  GNModel({this.url,this.title,this.description});
+  GNModel({this.url,this.iconUrl,this.title,this.description});
 }

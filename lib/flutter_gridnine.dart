@@ -128,7 +128,7 @@ class _GridNine extends State<GridNine> {
               children: <Widget>[
                 ClipOval(
                   child: Image.network(
-                    items[i].url,
+                    items[i].iconUrl,
                     fit: BoxFit.cover,
                     width: 40,
                     height: 40,
