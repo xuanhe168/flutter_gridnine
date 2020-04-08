@@ -1,5 +1,6 @@
 library flutter_gridnine;
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gridnine/indicator_decorator.dart';
 import 'package:flutter_gridnine/indicator_line.dart';
@@ -21,7 +22,7 @@ class GridNine extends StatefulWidget {
     @required this.collection,
     this.loop = true,
     this.axisCount = 5,
-    this.height = 170,
+    this.height = 180,
     this.onTap,
     this.backgroundColor = Colors.transparent,
     this.indicatorShow = false,
@@ -127,22 +128,32 @@ class _GridNine extends State<GridNine> {
             child: Column(
               children: <Widget>[
                 ClipOval(
-                  child: Image.network(
-                    items[i].iconUrl,
-                    fit: BoxFit.cover,
-                    width: 40,
-                    height: 40,
+                  child:CachedNetworkImage(
+                    imageUrl: items[i].getIconUrl(),
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                            colorFilter:
+                            ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                      ),
+                    ),
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
                 Text(
-                  items[i].title,
+                  items[i].getTitle(),
                   style: TextStyle(
                     fontSize: 11,
                     color: Colors.black,
                   ),
                 ),
                 Text(
-                  items[i].description,
+                  items[i].getSubTitle(),
                   style: TextStyle(
                     fontSize: 10,
                     color: Colors.grey,
