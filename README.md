@@ -7,7 +7,10 @@ Flutter九宫格插件.
 ### 引用
 - pubspec.yaml:
 ```
-
+dependencies:
+  ...
+  flutter_gridnine:
+    git: 'https://github.com/mingyouzhu/flutter_gridnine.git'
 ```
 
 - simpleModel.dart:
