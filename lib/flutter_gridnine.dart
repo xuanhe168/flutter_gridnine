@@ -10,9 +10,8 @@ export 'indicator_line.dart';
 
 class GridNine extends StatefulWidget {
   final bool loop;
-  final Color backgroundColor;
+  final Color color;
   final num axisCount;
-  final double height;
   final Decoration decoration;
   final bool indicatorShow;
   final Color indicatorActiveColor;
@@ -22,11 +21,10 @@ class GridNine extends StatefulWidget {
   GridNine({
     @required this.collection,
     this.loop = true,
-    this.axisCount = 5,
+    this.axisCount = 4,
     this.onTap,
-    this.height,
     this.decoration,
-    this.backgroundColor = Colors.transparent,
+    this.color = Colors.transparent,
     this.indicatorShow = false,
     this.indicatorActiveColor = Colors.red,
   });
@@ -44,15 +42,19 @@ class _GridNine extends State<GridNine> {
     int dotCount = widget.collection.length ~/ (rowCount * 2);
     dotCount += widget.collection.length % (rowCount * 2) > 0 ? 1 : 0;
     return Container(
-      padding:EdgeInsets.only(bottom:20),
-      decoration:widget.decoration,
-      height:widget.height,
-      child:Column(
+      color:widget.color,
+      padding: EdgeInsets.only(bottom: 20),
+      decoration: widget.decoration,
+      height: widget.indicatorShow ? (widget.collection.length != widget.axisCount &&
+          widget.collection.length / widget.axisCount > 0 ? 240 : 120) :
+      (widget.collection.length != widget.axisCount &&
+          widget.collection.length / widget.axisCount > 0 ? 240 : 120) - 10.00,
+      child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Expanded(
-            child:PageView(
+            child: PageView(
               children: _buildPageItem(widget.collection),
               onPageChanged: (_index) {
                 setState(() {
@@ -112,7 +114,6 @@ class _GridNine extends State<GridNine> {
             physics: FixedExtentScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: widget.axisCount,
-              childAspectRatio: 1.2,
             ),
             children: _buildItem(
               items.sublist(

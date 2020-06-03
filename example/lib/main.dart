@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var models = List<GNModel>();
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
       models.add(
         SimpleModel(
             iconUrl:
@@ -45,16 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        height:200,
-        margin: const EdgeInsets.only(top: 20,left:10,right:10),
+        margin: const EdgeInsets.only(top: 20),
         child:GridNine(
           axisCount:4,
-          decoration:BoxDecoration(
-            color:Colors.white,
-            shape:BoxShape.rectangle,
-            borderRadius:BorderRadius.circular(10),
-          ),
-          backgroundColor:Colors.white,
+          color:Colors.white,
           collection: models,
           indicatorShow: true,
           indicatorActiveColor: Colors.blue,
