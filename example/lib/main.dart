@@ -30,31 +30,31 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var models = List<GNModel>();
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 5; i++) {
       models.add(
         SimpleModel(
             iconUrl:
                 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567702065868&di=3b7a93083a7a10270c187ea395bf353a&imgtype=0&src=http%3A%2F%2Fpic32.nipic.com%2F20130808%2F13243996_132446704147_2.jpg',
             title: '标题1',
-            description: '描述信息'),
-      );
-      models.add(
-        SimpleModel(
-            iconUrl:
-                'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567708302427&di=96653f7cdcd54169b9f296e6fe43b928&imgtype=0&src=http%3A%2F%2Fwww.suntop168.com%2Fblog%2Fzb_users%2Fupload%2F2014%2F2%2FE034CA83.jpg',
-            title: '标题',
-            description: '描述信息'),
+            description: null),
       );
     }
     return Scaffold(
+      backgroundColor:Colors.black12,
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 20),
-        height: 210,
-        child: GridNine(
-          backgroundColor: Colors.white,
+        height:200,
+        margin: const EdgeInsets.only(top: 20,left:10,right:10),
+        child:GridNine(
+          axisCount:4,
+          decoration:BoxDecoration(
+            color:Colors.white,
+            shape:BoxShape.rectangle,
+            borderRadius:BorderRadius.circular(10),
+          ),
+          backgroundColor:Colors.white,
           collection: models,
           indicatorShow: true,
           indicatorActiveColor: Colors.blue,

@@ -11,8 +11,9 @@ export 'indicator_line.dart';
 class GridNine extends StatefulWidget {
   final bool loop;
   final Color backgroundColor;
-  final double height;
   final num axisCount;
+  final double height;
+  final Decoration decoration;
   final bool indicatorShow;
   final Color indicatorActiveColor;
   final Function(GNModel item) onTap;
@@ -22,8 +23,9 @@ class GridNine extends StatefulWidget {
     @required this.collection,
     this.loop = true,
     this.axisCount = 5,
-    this.height = 180,
     this.onTap,
+    this.height,
+    this.decoration,
     this.backgroundColor = Colors.transparent,
     this.indicatorShow = false,
     this.indicatorActiveColor = Colors.red,
@@ -35,20 +37,24 @@ class GridNine extends StatefulWidget {
 
 class _GridNine extends State<GridNine> {
   int index = 0;
+
   @override
   Widget build(BuildContext context) {
     int rowCount = widget.axisCount;
     int dotCount = widget.collection.length ~/ (rowCount * 2);
     dotCount += widget.collection.length % (rowCount * 2) > 0 ? 1 : 0;
-    return Scaffold(
-      backgroundColor:widget.backgroundColor,
-      body: Column(
+    return Container(
+      padding:EdgeInsets.only(bottom:20),
+      decoration:widget.decoration,
+      height:widget.height,
+      child:Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Container(
-            height: widget.height,
-            child: PageView(
+          Expanded(
+            child:PageView(
               children: _buildPageItem(widget.collection),
-              onPageChanged:(_index){
+              onPageChanged: (_index) {
                 setState(() {
                   this.index = _index;
                 });
@@ -57,15 +63,17 @@ class _GridNine extends State<GridNine> {
           ),
           Offstage(
             offstage: !widget.indicatorShow,
-            child:IndicatorLine(
-              dotsCount:dotCount,
+            child: IndicatorLine(
+              dotsCount: dotCount,
               position: index,
               decorator: IndicatorDecorator(
-                activeColor:widget.indicatorActiveColor,
+                activeColor: widget.indicatorActiveColor,
                 size: const Size(20, 1.5),
                 activeSize: const Size(20, 1.5),
                 shape: RoundedRectangleBorder(),
-                activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                activeShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
               ),
             ),
           ),
@@ -82,17 +90,16 @@ class _GridNine extends State<GridNine> {
     num index = 0;
     for (index = 0; index < pageCount.toInt(); index++)
       widgets.add(
-        Container(
-          child: GridView(
-            scrollDirection: Axis.vertical,
-            physics: FixedExtentScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: widget.axisCount,
-              childAspectRatio: 0.9
-            ),
-            children: _buildItem(
-              items.sublist(index * pageItemCount, index * pageItemCount + pageItemCount),
-            ),
+        GridView(
+          scrollDirection: Axis.vertical,
+          physics: FixedExtentScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: widget.axisCount,
+            childAspectRatio: 0.9,
+          ),
+          children: _buildItem(
+            items.sublist(
+                index * pageItemCount, index * pageItemCount + pageItemCount),
           ),
         ),
       );
@@ -105,10 +112,11 @@ class _GridNine extends State<GridNine> {
             physics: FixedExtentScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: widget.axisCount,
-              childAspectRatio: 0.9,
+              childAspectRatio: 1.2,
             ),
             children: _buildItem(
-              items.sublist(index * pageItemCount, index * pageItemCount + remainCount),
+              items.sublist(
+                  index * pageItemCount, index * pageItemCount + remainCount),
             ),
           ),
         ),
@@ -123,44 +131,53 @@ class _GridNine extends State<GridNine> {
       widgets.add(
         InkWell(
           onTap: () => widget.onTap(items[i]),
-          child: Container(
-            padding: const EdgeInsets.only(top: 8),
-            child: Column(
-              children: <Widget>[
-                ClipOval(
-                  child:CachedNetworkImage(
-                    imageUrl: items[i].getIconUrl(),
-                    imageBuilder: (context, imageProvider) => Container(
-                      width: 40,
-                      height: 40,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ClipOval(
+                child: CachedNetworkImage(
+                  imageUrl: items[i].getIconUrl(),
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      width: 45,
+                      height: 45,
                       decoration: BoxDecoration(
                         image: DecorationImage(
                             image: imageProvider,
                             fit: BoxFit.cover,
-                            colorFilter:
-                            ColorFilter.mode(Colors.red, BlendMode.colorBurn)),
+                            colorFilter: ColorFilter.mode(
+                                Colors.red, BlendMode.colorBurn)),
                       ),
-                    ),
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
+                    );
+                  },
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                Text(
-                  items[i].getTitle(),
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: Colors.black,
-                  ),
+              ),
+              Text(
+                items[i].getTitle(),
+                style: TextStyle(
+                  fontSize: 11,
+                  color: Colors.black,
                 ),
-                Text(
-                  items[i].getSubTitle(),
+              ),
+              Offstage(
+                offstage: items[i].getSubTitle() == null ||
+                        items[i].getSubTitle() == ""
+                    ? true
+                    : false,
+                child: Text(
+                  items[i].getSubTitle() == null || items[i].getSubTitle() == ""
+                      ? ""
+                      : items[i].getSubTitle(),
                   style: TextStyle(
                     fontSize: 10,
                     color: Colors.grey,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );
