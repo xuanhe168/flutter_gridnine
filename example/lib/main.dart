@@ -30,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     var models = List<GNModel>();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 8; i++) {
       models.add(
         SimpleModel(
             iconUrl:

@@ -94,7 +94,7 @@ class _GridNine extends State<GridNine> {
       widgets.add(
         GridView(
           scrollDirection: Axis.vertical,
-          physics: FixedExtentScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: widget.axisCount,
             childAspectRatio: 0.9,
@@ -111,7 +111,7 @@ class _GridNine extends State<GridNine> {
           margin: const EdgeInsets.only(top: 5),
           child: GridView(
             scrollDirection: Axis.vertical,
-            physics: FixedExtentScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: widget.axisCount,
             ),
@@ -165,7 +165,7 @@ class _GridNine extends State<GridNine> {
               ),
               Offstage(
                 offstage: items[i].getSubTitle() == null ||
-                        items[i].getSubTitle() == ""
+                    items[i].getSubTitle() == ""
                     ? true
                     : false,
                 child: Text(
