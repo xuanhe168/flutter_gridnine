@@ -12,6 +12,12 @@ dependencies:
   flutter_gridnine:
     git: 'https://github.com/mingyouzhu/flutter_gridnine.git'
 ```
+OR
+```
+dependencies:
+  ...
+  flutter_gridnine: ^0.0.1
+```
 
 - simpleModel.dart:
 ```
