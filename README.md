@@ -4,7 +4,7 @@ Flutter GridNine plugin.
 
 ## Getting Started
 
-### usage:
+### Usage:
 - pubspec.yaml:
 ```
 dependencies:
@@ -12,7 +12,7 @@ dependencies:
   flutter_gridnine:
     git: 'https://github.com/mingyouzhu/flutter_gridnine.git'
 ```
-OR
+- Or
 ```
 dependencies:
   ...
