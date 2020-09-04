@@ -1,10 +1,10 @@
 # flutter_gridnine
 
-Flutter九宫格插件.
+Flutter GridNine plugin.
 
 ## Getting Started
 
-### 引用
+### usage:
 - pubspec.yaml:
 ```
 dependencies:
