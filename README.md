@@ -1,7 +1,5 @@
 # flutter_gridnine
 
-[![pub version][pub-image]][pub-url] [![][discord-image]][discord-url]
-
 [pub-image]: https://img.shields.io/pub/v/local_notifier.svg
 [pub-url]: https://pub.dev/packages/flutter_serialport
 
