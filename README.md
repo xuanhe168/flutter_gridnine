@@ -1,24 +1,48 @@
 # flutter_gridnine
 
+[![pub version][pub-image]][pub-url] [![][discord-image]][discord-url]
+
+[pub-image]: https://img.shields.io/pub/v/local_notifier.svg
+[pub-url]: https://pub.dev/packages/flutter_serialport
+
 Flutter GridNine plugin.
 
-## Getting Started
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-### Usage:
-- pubspec.yaml:
-```
+- [flutter_gridnine](#flutter_gridnine)
+  - [Platform Support](#platform-support)
+  - [Quick Start](#quick-start)
+    - [Installation](#installation)
+    - [Usage](#usage)
+  - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Platform Support
+
+| All |
+| :---: |
+|   ✔️  |
+
+## Quick Start
+
+### Installation
+Add this to your package's pubspec.yaml file:
+```dart
 dependencies:
   ...
   flutter_gridnine:
     git: 'https://github.com/mingyouzhu/flutter_gridnine.git'
 ```
 - Or
-```
+```dart
 dependencies:
   ...
   flutter_gridnine: ^0.0.1
 ```
 
+### Usage
 - simpleModel.dart:
 ```
 import 'package:flutter_gridnine/gridnine_model.dart';
@@ -111,5 +135,11 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
 
+> Please see the example app of this plugin for a full example.
+
 # Preview
 ![Demo](./screenshots/1.png)
+
+## License
+
+[MIT](./LICENSE)
